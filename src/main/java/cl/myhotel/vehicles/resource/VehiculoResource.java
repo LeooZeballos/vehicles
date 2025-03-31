@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/api/vehiculos")
+@RestController("/api/v1/vehiculos")
 @RequiredArgsConstructor
 public class VehiculoResource {
 
