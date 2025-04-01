@@ -11,7 +11,7 @@ import org.hibernate.annotations.Comment;
 public class Automovil extends Vehiculo {
 
     @Column(name = "tipo_auto")
-    private String tipoAuto;
+    private TipoAutomovil tipoAuto;
 
     @Column(name = "num_puertas")
     private Integer numPuertas;

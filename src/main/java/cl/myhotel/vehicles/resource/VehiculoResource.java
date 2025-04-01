@@ -4,11 +4,10 @@ import cl.myhotel.vehicles.model.Vehiculo;
 import cl.myhotel.vehicles.service.VehiculoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,8 +34,18 @@ public class VehiculoResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<Vehiculo>> getAllVehiculos() {
-        return ResponseEntity.ok(vehiculoService.getAllVehiculos());
+    public ResponseEntity<Page<Vehiculo>> getAllVehiculos(
+            @RequestParam(required = false) String marca,
+            @RequestParam(required = false) String modelo,
+            @RequestParam(required = false) String patente,
+            @RequestParam(required = false) Integer anio,
+            @RequestParam(required = false) Integer kilometraje,
+            @RequestParam(required = false) Integer cilindrada,
+            @RequestParam(required = false) String tipo,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(vehiculoService.getAllVehiculos(
+                marca, modelo, patente, anio, kilometraje, cilindrada, tipo, pageable));
     }
 
 }
