@@ -25,7 +25,7 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
         }, pageable);
     }
 
-    public static List<Predicate> getVehiculoPredicates(VehiculoQueryParams queryParams, Root<Vehiculo> root, CriteriaBuilder builder) {
+    static List<Predicate> getVehiculoPredicates(VehiculoQueryParams queryParams, Root<Vehiculo> root, CriteriaBuilder builder) {
         List<Predicate> predicates = new ArrayList<>();
         if (queryParams.getId() != null) {
             predicates.add(root.get("id").in(queryParams.getId()));
