@@ -1,6 +1,8 @@
 package cl.myhotel.vehicles.service;
 
 import cl.myhotel.vehicles.model.Vehiculo;
+import cl.myhotel.vehicles.query.AutomovilQueryParams;
+import cl.myhotel.vehicles.query.CamionQueryParams;
 import cl.myhotel.vehicles.query.VehiculoQueryParams;
 import cl.myhotel.vehicles.repository.VehiculoRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ public class VehiculoService {
                 .orElseThrow(() -> new RuntimeException("Vehículo no encontrado"));
     }
 
-    public Page<Vehiculo> getAllVehiculos(
+    public Page<?> getAllVehiculos(
             String marca,
             String modelo,
             String patente,
@@ -27,6 +29,13 @@ public class VehiculoService {
             Integer kilometraje,
             Integer cilindrada,
             String tipo,
+            String tipoAuto,
+            String tipoCamion,
+            Integer numPuertas,
+            Integer capacidadPasajeros,
+            Integer capacidadMaletero,
+            Double capacidadToneladas,
+            Integer cantidadEjes,
             Pageable pageable
     ) {
         if (tipo == null || tipo.equals("ALL")) {
@@ -41,9 +50,32 @@ public class VehiculoService {
 
             return vehiculoRepository.findAllByParams(queryParams, pageable);
         } else if (tipo.equals("AUTOMOVIL")) {
-            return null;
+            AutomovilQueryParams queryParams = AutomovilQueryParams.builder()
+                    .marca(marca)
+                    .modelo(modelo)
+                    .patente(patente)
+                    .anio(anio)
+                    .kilometraje(kilometraje)
+                    .cilindrada(cilindrada)
+                    .tipoAuto(tipoAuto)
+                    .numPuertas(numPuertas)
+                    .capacidadPasajeros(capacidadPasajeros)
+                    .capacidadMaletero(capacidadMaletero)
+                    .build();
+            return vehiculoRepository.findAllAutomovilesByParams(queryParams, pageable);
         } else if (tipo.equals("CAMION")) {
-            return null;
+            CamionQueryParams queryParams = CamionQueryParams.builder()
+                    .marca(marca)
+                    .modelo(modelo)
+                    .patente(patente)
+                    .anio(anio)
+                    .kilometraje(kilometraje)
+                    .cilindrada(cilindrada)
+                    .tipoCamion(tipoCamion)
+                    .capacidadToneladas(capacidadToneladas)
+                    .cantidadEjes(cantidadEjes)
+                    .build();
+            return vehiculoRepository.findAllCamionesByParams(queryParams, pageable);
         } else {
             throw new RuntimeException("Tipo de vehículo no válido");
         }

@@ -1,10 +1,12 @@
 package cl.myhotel.vehicles.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoAutomovil {
 
     TIPO_HATCHBACK("Hatchback"),
     TIPO_SEDAN("Sedan"),
-    TIPO_CUPÉ("Coupé"),
+    TIPO_CUPE("Coupé"),
     TIPO_CONVERTIBLE("Convertible"),
     TIPO_VAN("Van"),
     TIPO_PICKUP("Pickup"),
@@ -18,6 +20,20 @@ public enum TipoAutomovil {
 
     TipoAutomovil(String nombre) {
         this.nombre = nombre;
+    }
+
+    public static TipoAutomovil getTipoByNombre(String nombre) {
+        for (TipoAutomovil tipo : TipoAutomovil.values()) {
+            if (tipo.nombre.equalsIgnoreCase(nombre)) {
+                return tipo;
+            }
+        }
+        throw new IllegalArgumentException("Tipo de automóvil no válido: " + nombre);
+    }
+
+    @JsonValue
+    public String getNombre() {
+        return nombre;
     }
 
 }
