@@ -34,6 +34,7 @@ public class User implements UserDetails {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "_user_seq", sequenceName = "_user_seq", allocationSize = 1)
     private Long id;
 
     /**

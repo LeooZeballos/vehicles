@@ -58,7 +58,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
                         .requestMatchers(
-                                apiPath +"/auth/**",       // Authentication endpoints
+                                apiPath + "/auth/**",       // Authentication endpoints
                                 "/h2-console/**"           // H2 console
                         ).permitAll()
                         .anyRequest().authenticated()        // Any other request must be authenticated

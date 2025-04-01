@@ -9,7 +9,6 @@ import org.springframework.lang.NonNull;
  */
 public record RegisterRequest(
         @NonNull String username,
-        @NonNull String dni,
         @NonNull String password,
         @NonNull String email
 ) {

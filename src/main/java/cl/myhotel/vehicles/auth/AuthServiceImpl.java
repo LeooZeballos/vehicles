@@ -8,9 +8,11 @@ import cl.myhotel.vehicles.response.TokenResponse;
 import cl.myhotel.vehicles.request.LoginRequest;
 import cl.myhotel.vehicles.request.RefreshRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
  * @see IAuthService
  * @author Leonel Zeballos
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements IAuthService {
@@ -48,10 +51,14 @@ public class AuthServiceImpl implements IAuthService {
     private final JwtDecoder jwtDecoder;
 
     /**
+     * The password encoder.
+     */
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    /**
      * The JWT expiration time in seconds.
      */
     private final static long JWT_EXPIRATION_TIME = 60 * 60; // 1 hour
-
 
     /**
      * Register a new user. It also generates a JWT token.
@@ -75,7 +82,7 @@ public class AuthServiceImpl implements IAuthService {
         // Crate user
         User newUser = User.builder()
                 .username(registerRequest.username())
-                .password(registerRequest.password())
+                .password(bCryptPasswordEncoder.encode(registerRequest.password()))
                 .email(registerRequest.email())
                 .roles(List.of(Role.USER))
                 .build();
@@ -95,17 +102,13 @@ public class AuthServiceImpl implements IAuthService {
      */
     @Override
     public TokenResponse login(LoginRequest loginRequest) {
-        // Validate user credentials
         try {
-            // Search user
             User user = loadUser(loginRequest.username());
 
-            // Validate password
-            if (!user.getPassword().equals(loginRequest.password())) {
+            if (!bCryptPasswordEncoder.matches(loginRequest.password(), user.getPassword())) {
                 throw new IllegalArgumentException("Invalid credentials for " + loginRequest.username());
             }
 
-            // Generate token
             return generateToken(user);
         } catch (UsernameNotFoundException e) {
             throw new IllegalArgumentException("Invalid credentials for " + loginRequest.username());
@@ -150,13 +153,8 @@ public class AuthServiceImpl implements IAuthService {
      */
     @Override
     public TokenResponse refreshToken(RefreshRequest refreshToken) {
-        // Decode the refresh token
         Jwt jwt = jwtDecoder.decode(refreshToken.token());
-
-        // Get the claims
         Map<String, Object> claims = jwt.getClaims();
-
-        // Get the user
         UserDetails user = loadUserByUsername(claims.get("sub").toString());
 
         // Validate the scope

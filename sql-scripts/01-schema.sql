@@ -2,6 +2,34 @@
 CREATE DATABASE IF NOT EXISTS vehicle_db;
 USE vehicle_db;
 
+-- User table
+create table if not exists _user
+(
+    id                      bigint       not null
+        primary key,
+    account_non_expired     bit          not null,
+    account_non_locked      bit          not null,
+    created_at              datetime(6)  not null,
+    credentials_non_expired bit          not null,
+    email                   varchar(255) not null,
+    enabled                 bit          not null,
+    password                varchar(255) not null,
+    username                varchar(255) not null,
+    constraint UK3xhbjqvaggiuydvv84k4h6iq8
+        unique (username, email),
+    constraint UKk11y3pdtsrjgy8w9b6q4bjwrx
+        unique (email)
+);
+
+-- User roles table
+create table if not exists user_role
+(
+    user_id bigint                 not null,
+    roles   enum ('ADMIN', 'USER') null,
+    constraint FKniaqoclrvx138sjw9hsollqav
+        foreign key (user_id) references _user (id)
+);
+
 -- Vehicle base table
 create table if not exists vehiculo
 (
