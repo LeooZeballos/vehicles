@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 public class Vehiculo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "vehiculo_seq", sequenceName = "vehiculo_seq", allocationSize = 1)
     private Integer id;
 
     @Column(name = "marca")

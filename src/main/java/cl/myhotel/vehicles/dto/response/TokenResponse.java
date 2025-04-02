@@ -1,4 +1,4 @@
-package cl.myhotel.vehicles.response;
+package cl.myhotel.vehicles.dto.response;
 
 import lombok.Builder;
 

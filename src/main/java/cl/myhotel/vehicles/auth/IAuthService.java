@@ -1,10 +1,10 @@
 package cl.myhotel.vehicles.auth;
 
 import cl.myhotel.vehicles.model.User;
-import cl.myhotel.vehicles.request.LoginRequest;
-import cl.myhotel.vehicles.request.RefreshRequest;
-import cl.myhotel.vehicles.request.RegisterRequest;
-import cl.myhotel.vehicles.response.TokenResponse;
+import cl.myhotel.vehicles.dto.request.LoginRequest;
+import cl.myhotel.vehicles.dto.request.RefreshRequest;
+import cl.myhotel.vehicles.dto.request.RegisterRequest;
+import cl.myhotel.vehicles.dto.response.TokenResponse;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -66,6 +66,7 @@ public interface IAuthService extends UserDetailsService {
      * @return The user details.
      * @throws UsernameNotFoundException If the user is not found.
      */
+    @SuppressWarnings("unused")
     User getCurrentUser(JwtAuthenticationToken token) throws UsernameNotFoundException;
 
 }

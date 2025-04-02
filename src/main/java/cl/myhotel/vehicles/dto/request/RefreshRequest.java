@@ -1,4 +1,4 @@
-package cl.myhotel.vehicles.request;
+package cl.myhotel.vehicles.dto.request;
 
 import org.springframework.lang.NonNull;
 

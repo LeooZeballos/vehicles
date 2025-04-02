@@ -1,5 +1,7 @@
 package cl.myhotel.vehicles.service;
 
+import cl.myhotel.vehicles.dto.VehiculoDTO;
+import cl.myhotel.vehicles.mapper.VehiculoMapper;
 import cl.myhotel.vehicles.model.Vehiculo;
 import cl.myhotel.vehicles.query.AutomovilQueryParams;
 import cl.myhotel.vehicles.query.CamionQueryParams;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class VehiculoService {
 
     private final VehiculoRepository vehiculoRepository;
+    private final VehiculoMapper vehiculoMapper;
 
     public Vehiculo getVehiculoById(Long id) {
         return vehiculoRepository.findById(id)
@@ -79,5 +82,12 @@ public class VehiculoService {
         } else {
             throw new RuntimeException("Tipo de vehículo no válido");
         }
+    }
+
+    public VehiculoDTO createVehiculo(VehiculoDTO vehiculo) {
+        Vehiculo vehiculoEntity = vehiculoMapper.toEntity(vehiculo);
+
+        Vehiculo saved = vehiculoRepository.saveAndFlush(vehiculoEntity);
+        return vehiculoMapper.toDTO(saved);
     }
 }

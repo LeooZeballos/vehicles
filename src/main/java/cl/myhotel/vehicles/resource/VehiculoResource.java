@@ -1,5 +1,6 @@
 package cl.myhotel.vehicles.resource;
 
+import cl.myhotel.vehicles.dto.VehiculoDTO;
 import cl.myhotel.vehicles.model.Vehiculo;
 import cl.myhotel.vehicles.service.VehiculoService;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +55,11 @@ public class VehiculoResource {
                 tipoCamion, numPuertas, capacidadPasajeros, capacidadMaletero,
                 capacidadToneladas, cantidadEjes, pageable
         ));
+    }
+
+    @PostMapping
+    public ResponseEntity<VehiculoDTO> createVehiculo(@RequestBody VehiculoDTO vehiculo) {
+        return ResponseEntity.ok(vehiculoService.createVehiculo(vehiculo));
     }
 
 }
