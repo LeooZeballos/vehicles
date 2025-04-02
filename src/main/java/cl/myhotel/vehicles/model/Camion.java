@@ -2,7 +2,11 @@ package cl.myhotel.vehicles.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Represents a truck entity in the system.
@@ -14,6 +18,9 @@ import lombok.*;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public class Camion extends Vehiculo {
 
     @Column(name = "tipo_camion")

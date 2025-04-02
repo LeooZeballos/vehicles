@@ -1,0 +1,35 @@
+# General Config
+# --------------------------
+spring:
+  application:
+    name: vehicles
+  datasource:
+    url: jdbc:mysql://localhost:3306/vehicle_db
+    username: vehicle_admin
+    password: adminpass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+application:
+  title: Vehicle Management System
+  version: 0.0.1-SNAPSHOT
+  api:
+    version: v1
+    base-path: /api
+
+server:
+  port: 9090
+
+# JWT Configuration
+jwt:
+  private:
+    key: classpath:app.key
+  public:
+    key: classpath:app.pub

@@ -1,7 +1,10 @@
 package cl.myhotel.vehicles.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -22,6 +25,9 @@ import java.util.List;
 @Table(name = "vehiculo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public class Vehiculo {
 
     /**

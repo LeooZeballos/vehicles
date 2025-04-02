@@ -35,6 +35,8 @@ public class VehiculoMapper {
         dto.setAnio(vehiculo.getAnio());
         dto.setKilometraje(vehiculo.getKilometraje());
         dto.setCilindrada(vehiculo.getCilindrada());
+        dto.setCreatedAt(vehiculo.getCreatedAt());
+        dto.setUpdatedAt(vehiculo.getUpdatedAt());
 
         if (vehiculo instanceof Automovil automovil) {
             dto.setTipoVehiculo("automovil");
@@ -93,6 +95,8 @@ public class VehiculoMapper {
         vehiculo.setAnio(dto.getAnio());
         vehiculo.setKilometraje(dto.getKilometraje());
         vehiculo.setCilindrada(dto.getCilindrada());
+        vehiculo.setCreatedAt(dto.getCreatedAt());
+        vehiculo.setUpdatedAt(dto.getUpdatedAt());
 
         return vehiculo;
     }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 /**
  * Data Transfer Object (DTO) for vehicle information.
  * This class is used to transfer vehicle-related data between layers of the application.
@@ -26,6 +28,8 @@ public class VehiculoDTO {
     private Integer anio;
     private Integer kilometraje;
     private Integer cilindrada;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private String tipoVehiculo = ""; // vehiculo, automovil, camion
     private String tipoAuto; // automovil
     private String tipoCamion; // camion
