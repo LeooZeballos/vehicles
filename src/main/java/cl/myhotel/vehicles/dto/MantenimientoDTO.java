@@ -24,6 +24,6 @@ public class MantenimientoDTO {
     private String tipoMantenimiento;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private VehiculoDTO vehiculoDTO;
+    private VehiculoDTO vehiculo;
     private String observaciones;
 }

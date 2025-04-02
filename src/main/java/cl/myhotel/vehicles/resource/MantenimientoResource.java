@@ -5,10 +5,7 @@ import cl.myhotel.vehicles.service.MantenimientoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,6 +48,20 @@ public class MantenimientoResource {
         return ResponseEntity.ok(mantenimientoService.getMantenimientos(vehiculoId));
     }
 
+    @PostMapping("/vehiculo/{vehiculoId}")
+    public ResponseEntity<MantenimientoDTO> createMantenimiento(@PathVariable Long vehiculoId, @RequestBody MantenimientoDTO mantenimientoDTO) {
+        return ResponseEntity.ok(mantenimientoService.createMantenimiento(vehiculoId, mantenimientoDTO));
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<MantenimientoDTO> updateMantenimiento(@PathVariable Long id, @RequestBody MantenimientoDTO mantenimientoDTO) {
+        return ResponseEntity.ok(mantenimientoService.updateMantenimiento(id, mantenimientoDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMantenimiento(@PathVariable Long id) {
+        mantenimientoService.deleteMantenimiento(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

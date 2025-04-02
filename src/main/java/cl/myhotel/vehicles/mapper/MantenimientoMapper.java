@@ -43,7 +43,7 @@ public class MantenimientoMapper {
         dto.setObservaciones(m.getObservaciones());
 
         if (m.getVehiculo() != null) {
-            dto.setVehiculoDTO(vehiculoMapper.toDTO(m.getVehiculo()));
+            dto.setVehiculo(vehiculoMapper.toDTO(m.getVehiculo()));
         }
 
         return dto;
@@ -66,8 +66,8 @@ public class MantenimientoMapper {
         m.setCreatedAt(dto.getCreatedAt());
         m.setUpdatedAt(dto.getUpdatedAt());
 
-        if (dto.getVehiculoDTO() != null) {
-            m.setVehiculo(vehiculoMapper.toEntity(dto.getVehiculoDTO()));
+        if (dto.getVehiculo() != null) {
+            m.setVehiculo(vehiculoMapper.toEntity(dto.getVehiculo()));
         }
 
         return m;
@@ -105,6 +105,21 @@ public class MantenimientoMapper {
         return ms.stream()
                 .map(this::toDTO)
                 .toList();
+    }
+
+    public void updateEntityFromDTO(MantenimientoDTO mantenimientoDTO, Mantenimiento mantenimientoSaved) {
+        if (mantenimientoDTO == null || mantenimientoSaved == null) {
+            return;
+        }
+
+        mantenimientoSaved.setTipoMantenimiento(TipoMantenimiento.getTipoByNombre(mantenimientoDTO.getTipoMantenimiento()));
+        mantenimientoSaved.setObservaciones(mantenimientoDTO.getObservaciones());
+        mantenimientoSaved.setCreatedAt(mantenimientoDTO.getCreatedAt());
+        mantenimientoSaved.setUpdatedAt(mantenimientoDTO.getUpdatedAt());
+
+        if (mantenimientoDTO.getVehiculo() != null) {
+            mantenimientoSaved.setVehiculo(vehiculoMapper.toEntity(mantenimientoDTO.getVehiculo()));
+        }
     }
 
 }
