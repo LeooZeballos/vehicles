@@ -90,4 +90,27 @@ public class VehiculoService {
         Vehiculo saved = vehiculoRepository.saveAndFlush(vehiculoEntity);
         return vehiculoMapper.toDTO(saved);
     }
+
+    public VehiculoDTO updateVehiculo(Long id, VehiculoDTO vehiculo) {
+        Vehiculo existingVehiculo = getVehiculoById(id);
+        if (existingVehiculo == null) {
+            throw new RuntimeException("Vehículo no encontrado");
+        }
+
+        vehiculo.setId(existingVehiculo.getId());
+        Vehiculo updatedVehiculo = vehiculoMapper.toEntity(vehiculo);
+        updatedVehiculo.setId(existingVehiculo.getId());
+        vehiculoRepository.save(updatedVehiculo);
+        return vehiculoMapper.toDTO(updatedVehiculo);
+    }
+
+
+    public void deleteVehiculo(Long id) {
+        Vehiculo vehiculo = getVehiculoById(id);
+        if (vehiculo == null) {
+            throw new RuntimeException("Vehículo no encontrado");
+        }
+        vehiculoRepository.delete(vehiculo);
+    }
+
 }

@@ -1,5 +1,7 @@
 package cl.myhotel.vehicles.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.*;
 
 @Getter
@@ -7,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(Include.NON_NULL)
 public class VehiculoDTO {
     private Integer id;
     private String marca;

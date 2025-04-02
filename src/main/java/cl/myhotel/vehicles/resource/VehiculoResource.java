@@ -62,4 +62,15 @@ public class VehiculoResource {
         return ResponseEntity.ok(vehiculoService.createVehiculo(vehiculo));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<VehiculoDTO> updateVehiculo(@PathVariable Long id, @RequestBody VehiculoDTO vehiculo) {
+        return ResponseEntity.ok(vehiculoService.updateVehiculo(id, vehiculo));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehiculo(@PathVariable Long id) {
+        vehiculoService.deleteVehiculo(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

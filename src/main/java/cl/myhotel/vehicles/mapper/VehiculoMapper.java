@@ -25,13 +25,13 @@ public class VehiculoMapper {
 
         if (vehiculo instanceof Automovil automovil) {
             dto.setTipoVehiculo("automovil");
-            dto.setTipoAuto(automovil.getTipoAuto().name());
+            dto.setTipoAuto(automovil.getTipoAuto().getNombre());
             dto.setNumPuertas(automovil.getNumPuertas());
             dto.setCapacidadPasajeros(automovil.getCapacidadPasajeros());
             dto.setCapacidadMaletero(automovil.getCapacidadMaletero());
         } else if (vehiculo instanceof Camion camion) {
             dto.setTipoVehiculo("camion");
-            dto.setTipoCamion(camion.getTipoCamion().name());
+            dto.setTipoCamion(camion.getTipoCamion().getNombre());
             dto.setCapacidadToneladas(camion.getCapacidadToneladas().toString());
             dto.setCantidadEjes(camion.getCantidadEjes());
         } else {
