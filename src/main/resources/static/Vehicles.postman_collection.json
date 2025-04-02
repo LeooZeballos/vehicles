@@ -1,0 +1,1677 @@
+{
+  "info": {
+    "_postman_id": "89fc6e86-95ba-4f9c-8fc3-ef61d312eb2e",
+    "name": "Vehicles",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28546699"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Set token from response to collection variable\", function () {\r",
+                  "    pm.environment.set(\"token\", pm.response.json().token);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"leo\",\r\n    \"password\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/auth/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Set token from response to collection variable\", function () {\r",
+                  "    pm.environment.set(\"token\", pm.response.json().token);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"leo\",\r\n    \"password\": \"admin\",\r\n    \"email\": \"leo@mail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/auth/register",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vehiculos",
+      "item": [
+        {
+          "name": "Vehiculo by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/vehiculos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "vehiculos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 - OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url}}/vehiculos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:31:06 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"patente\": \"ABC123\",\n    \"anio\": 2020,\n    \"kilometraje\": 45000,\n    \"cilindrada\": 1600,\n    \"createdAt\": \"2025-04-01T20:25:38\",\n    \"updatedAt\": \"2025-04-01T20:25:38\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Vehiculos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/vehiculos",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "vehiculos"
+              ],
+              "query": [
+                {
+                  "key": "marca",
+                  "value": "Toyota",
+                  "description": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "modelo",
+                  "value": "Corolla",
+                  "description": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "patente",
+                  "value": "ABC123",
+                  "description": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "anio",
+                  "value": "GHI789",
+                  "description": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "kilometraje",
+                  "value": "20000",
+                  "description": "integer",
+                  "disabled": true
+                },
+                {
+                  "key": "cilindrada",
+                  "value": "2000",
+                  "description": "integer",
+                  "disabled": true
+                },
+                {
+                  "key": "tipo",
+                  "value": "AUTOMOVIL",
+                  "description": "ALL, AUTOMOVIL, CAMION",
+                  "disabled": true
+                },
+                {
+                  "key": "tipoAuto",
+                  "value": "Hatchback",
+                  "description": "Hatchback,Sedan,Coupé,Convertible,Van,Pickup,SUV,Crossover,Minivan,Wagon,Cabriolet",
+                  "disabled": true
+                },
+                {
+                  "key": "tipoCamion",
+                  "value": "tolva",
+                  "description": "3/4,tolva,volquete,plataforma,tanque,frigorifico",
+                  "disabled": true
+                },
+                {
+                  "key": "numPuertas",
+                  "value": "4",
+                  "description": "integer, solo automovil",
+                  "disabled": true
+                },
+                {
+                  "key": "capacidadPasajeros",
+                  "value": "4",
+                  "description": "integer, solo automovil",
+                  "disabled": true
+                },
+                {
+                  "key": "capacidadMaletero",
+                  "value": "3",
+                  "description": "integer, solo automovil",
+                  "disabled": true
+                },
+                {
+                  "key": "capacidadToneladas",
+                  "value": "20.5",
+                  "description": "double, solo camion",
+                  "disabled": true
+                },
+                {
+                  "key": "cantidadEjes",
+                  "value": "2",
+                  "description": "integer, solo camion",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 - OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/vehiculos",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos"
+                  ],
+                  "query": [
+                    {
+                      "key": "marca",
+                      "value": "Toyota",
+                      "description": "string",
+                      "disabled": true
+                    },
+                    {
+                      "key": "modelo",
+                      "value": "Corolla",
+                      "description": "string",
+                      "disabled": true
+                    },
+                    {
+                      "key": "patente",
+                      "value": "ABC123",
+                      "description": "string",
+                      "disabled": true
+                    },
+                    {
+                      "key": "anio",
+                      "value": "GHI789",
+                      "description": "string",
+                      "disabled": true
+                    },
+                    {
+                      "key": "kilometraje",
+                      "value": "20000",
+                      "description": "integer",
+                      "disabled": true
+                    },
+                    {
+                      "key": "cilindrada",
+                      "value": "2000",
+                      "description": "integer",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tipo",
+                      "value": "AUTOMOVIL",
+                      "description": "ALL, AUTOMOVIL, CAMION",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tipoAuto",
+                      "value": "Hatchback",
+                      "description": "Hatchback,Sedan,Coupé,Convertible,Van,Pickup,SUV,Crossover,Minivan,Wagon,Cabriolet",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tipoCamion",
+                      "value": "tolva",
+                      "description": "3/4,tolva,volquete,plataforma,tanque,frigorifico",
+                      "disabled": true
+                    },
+                    {
+                      "key": "numPuertas",
+                      "value": "4",
+                      "description": "integer, solo automovil",
+                      "disabled": true
+                    },
+                    {
+                      "key": "capacidadPasajeros",
+                      "value": "4",
+                      "description": "integer, solo automovil",
+                      "disabled": true
+                    },
+                    {
+                      "key": "capacidadMaletero",
+                      "value": "3",
+                      "description": "integer, solo automovil",
+                      "disabled": true
+                    },
+                    {
+                      "key": "capacidadToneladas",
+                      "value": "20.5",
+                      "description": "double, solo camion",
+                      "disabled": true
+                    },
+                    {
+                      "key": "cantidadEjes",
+                      "value": "2",
+                      "description": "integer, solo camion",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:30:54 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 45000,\n            \"cilindrada\": 1600,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\"\n        },\n        {\n            \"id\": 2,\n            \"marca\": \"Ford\",\n            \"modelo\": \"Ranger\",\n            \"patente\": \"DEF456\",\n            \"anio\": 2018,\n            \"kilometraje\": 80000,\n            \"cilindrada\": 2500,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\"\n        },\n        {\n            \"id\": 3,\n            \"marca\": \"Honda\",\n            \"modelo\": \"Civic\",\n            \"patente\": \"GHI789\",\n            \"anio\": 2021,\n            \"kilometraje\": 20000,\n            \"cilindrada\": 2000,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\"\n        },\n        {\n            \"id\": 4,\n            \"marca\": \"Volvo\",\n            \"modelo\": \"FH\",\n            \"patente\": \"JKL012\",\n            \"anio\": 2019,\n            \"kilometraje\": 60000,\n            \"cilindrada\": 3000,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\"\n        },\n        {\n            \"id\": 5,\n            \"marca\": \"Hyundai\",\n            \"modelo\": \"Tucson\",\n            \"patente\": \"MNO345\",\n            \"anio\": 2022,\n            \"kilometraje\": 10000,\n            \"cilindrada\": 1800,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\"\n        },\n        {\n            \"id\": 6,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 15000,\n            \"cilindrada\": 1800,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 15000,\n            \"cilindrada\": 1800,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        },\n        {\n            \"id\": 52,\n            \"marca\": \"Toyotaa\",\n            \"modelo\": \"Corollaa\",\n            \"patente\": \"ABD123\",\n            \"anio\": 2021,\n            \"kilometraje\": 20000,\n            \"cilindrada\": 1700,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        },\n        {\n            \"id\": 6,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 15000,\n            \"cilindrada\": 1800,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 15000,\n            \"cilindrada\": 1800,\n            \"createdAt\": null,\n            \"updatedAt\": null\n        },\n        {\n            \"id\": 8,\n            \"marca\": \"Hyundai\",\n            \"modelo\": \"Tucson\",\n            \"patente\": \"MAS345\",\n            \"anio\": 2022,\n            \"kilometraje\": 10000,\n            \"cilindrada\": 1800,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\",\n            \"tipoAuto\": \"Coupé\",\n            \"numPuertas\": 5,\n            \"capacidadPasajeros\": 5,\n            \"capacidadMaletero\": 620\n        },\n        {\n            \"id\": 9,\n            \"marca\": \"Chevrolet\",\n            \"modelo\": \"Spark\",\n            \"patente\": \"PQR678\",\n            \"anio\": 2021,\n            \"kilometraje\": 15000,\n            \"cilindrada\": 1500,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\",\n            \"tipoAuto\": \"Convertible\",\n            \"numPuertas\": 5,\n            \"capacidadPasajeros\": 4,\n            \"capacidadMaletero\": 280\n        },\n        {\n            \"id\": 10,\n            \"marca\": \"Ford\",\n            \"modelo\": \"Mustang\",\n            \"patente\": \"STU901\",\n            \"anio\": 2020,\n            \"kilometraje\": 30000,\n            \"cilindrada\": 3500,\n            \"createdAt\": \"2025-04-01T20:25:38\",\n            \"updatedAt\": \"2025-04-01T20:25:38\",\n            \"tipoAuto\": \"Van\",\n            \"numPuertas\": 2,\n            \"capacidadPasajeros\": 4,\n            \"capacidadMaletero\": 382\n        },\n        {\n            \"id\": 102,\n            \"marca\": \"Toyotaa\",\n            \"modelo\": \"Corollaa\",\n            \"patente\": \"ABC124\",\n            \"anio\": 2021,\n            \"kilometraje\": 14000,\n            \"cilindrada\": 1200,\n            \"createdAt\": null,\n            \"updatedAt\": null,\n            \"tipoAuto\": \"Coupé\",\n            \"numPuertas\": 2,\n            \"capacidadPasajeros\": 6,\n            \"capacidadMaletero\": 700\n        },\n        {\n            \"id\": 11,\n            \"marca\": \"Ford\",\n            \"modelo\": \"Ranger\",\n            \"patente\": \"DEF456\",\n            \"anio\": 2018,\n            \"kilometraje\": 80000,\n            \"cilindrada\": 2500,\n            \"createdAt\": \"2025-04-01T20:27:51\",\n            \"updatedAt\": \"2025-04-01T20:27:51\",\n            \"tipoCamion\": \"3/4\",\n            \"capacidadToneladas\": 1.2,\n            \"cantidadEjes\": 2\n        },\n        {\n            \"id\": 12,\n            \"marca\": \"Volvo\",\n            \"modelo\": \"FH\",\n            \"patente\": \"JKL012\",\n            \"anio\": 2019,\n            \"kilometraje\": 60000,\n            \"cilindrada\": 3000,\n            \"createdAt\": \"2025-04-01T20:27:51\",\n            \"updatedAt\": \"2025-04-01T20:27:51\",\n            \"tipoCamion\": \"tolva\",\n            \"capacidadToneladas\": 20.5,\n            \"cantidadEjes\": 3\n        },\n        {\n            \"id\": 13,\n            \"marca\": \"Mercedes-Benz\",\n            \"modelo\": \"Actros\",\n            \"patente\": \"VWX234\",\n            \"anio\": 2020,\n            \"kilometraje\": 50000,\n            \"cilindrada\": 2800,\n            \"createdAt\": \"2025-04-01T20:27:51\",\n            \"updatedAt\": \"2025-04-01T20:27:51\",\n            \"tipoCamion\": \"volquete\",\n            \"capacidadToneladas\": 40,\n            \"cantidadEjes\": 4\n        },\n        {\n            \"id\": 14,\n            \"marca\": \"Scania\",\n            \"modelo\": \"R450\",\n            \"patente\": \"YZA567\",\n            \"anio\": 2021,\n            \"kilometraje\": 25000,\n            \"cilindrada\": 3200,\n            \"createdAt\": \"2025-04-01T20:27:51\",\n            \"updatedAt\": \"2025-04-01T20:27:51\",\n            \"tipoCamion\": \"plataforma\",\n            \"capacidadToneladas\": 25,\n            \"cantidadEjes\": 3\n        },\n        {\n            \"id\": 15,\n            \"marca\": \"Iveco\",\n            \"modelo\": \"Daily\",\n            \"patente\": \"BCD890\",\n            \"anio\": 2017,\n            \"kilometraje\": 120000,\n            \"cilindrada\": 2600,\n            \"createdAt\": \"2025-04-01T20:27:51\",\n            \"updatedAt\": \"2025-04-01T20:27:51\",\n            \"tipoCamion\": \"tanque\",\n            \"capacidadToneladas\": 3.5,\n            \"cantidadEjes\": 2\n        },\n        {\n            \"id\": 103,\n            \"marca\": \"Volvoo\",\n            \"modelo\": \"FH161\",\n            \"patente\": \"XYZ782\",\n            \"anio\": 2012,\n            \"kilometraje\": 150000,\n            \"cilindrada\": 14000,\n            \"createdAt\": null,\n            \"updatedAt\": null,\n            \"tipoCamion\": \"tolva\",\n            \"capacidadToneladas\": 25.7,\n            \"cantidadEjes\": 4\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 20,\n        \"sort\": {\n            \"sorted\": false,\n            \"unsorted\": true,\n            \"empty\": true\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 1,\n    \"totalElements\": 20,\n    \"last\": true,\n    \"numberOfElements\": 20,\n    \"size\": 20,\n    \"number\": 0,\n    \"sort\": {\n        \"sorted\": false,\n        \"unsorted\": true,\n        \"empty\": true\n    },\n    \"first\": true,\n    \"empty\": false\n}"
+            }
+          ]
+        },
+        {
+          "name": "New Vehiculo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"marca\": \"Toyota\",\r\n    \"modelo\": \"Corolla\",\r\n    \"patente\": \"ABC123\",\r\n    \"anio\": 2020,\r\n    \"kilometraje\": 15000,\r\n    \"cilindrada\": 1800\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/vehiculos",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "vehiculos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "New Vehiculo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Toyota\",\r\n    \"modelo\": \"Corolla\",\r\n    \"patente\": \"ABC123\",\r\n    \"anio\": 2020,\r\n    \"kilometraje\": 15000,\r\n    \"cilindrada\": 1800\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:09:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 52,\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"patente\": \"ABC123\",\n    \"anio\": 2020,\n    \"kilometraje\": 15000,\n    \"cilindrada\": 1800,\n    \"tipoVehiculo\": \"vehiculo\"\n}"
+            },
+            {
+              "name": "New Automovil",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Toyota\",\r\n    \"modelo\": \"Corolla\",\r\n    \"patente\": \"ABC123\",\r\n    \"anio\": 2020,\r\n    \"kilometraje\": 15000,\r\n    \"cilindrada\": 1800,\r\n    \"tipoVehiculo\": \"automovil\",\r\n    \"tipoAuto\": \"Sedan\",\r\n    \"numPuertas\": 4,\r\n    \"capacidadPasajeros\": 5,\r\n    \"capacidadMaletero\": 450\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:13:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 102,\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"patente\": \"ABC123\",\n    \"anio\": 2020,\n    \"kilometraje\": 15000,\n    \"cilindrada\": 1800,\n    \"tipoVehiculo\": \"automovil\",\n    \"tipoAuto\": \"TIPO_SEDAN\",\n    \"numPuertas\": 4,\n    \"capacidadPasajeros\": 5,\n    \"capacidadMaletero\": 450\n}"
+            },
+            {
+              "name": "New Camion",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Volvo\",\r\n    \"modelo\": \"FH16\",\r\n    \"patente\": \"XYZ789\",\r\n    \"anio\": 2019,\r\n    \"kilometraje\": 50000,\r\n    \"cilindrada\": 16000,\r\n    \"tipoVehiculo\": \"camion\",\r\n    \"tipoCamion\": \"3/4\",\r\n    \"capacidadToneladas\": 25.5,\r\n    \"cantidadEjes\": 3\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:14:47 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 103,\n    \"marca\": \"Volvo\",\n    \"modelo\": \"FH16\",\n    \"patente\": \"XYZ789\",\n    \"anio\": 2019,\n    \"kilometraje\": 50000,\n    \"cilindrada\": 16000,\n    \"tipoVehiculo\": \"camion\",\n    \"tipoCamion\": \"TIPO_3_4\",\n    \"capacidadToneladas\": \"25.5\",\n    \"cantidadEjes\": 3\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Vehiculo",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"marca\": \"Toyotaa\",\r\n    \"modelo\": \"Corollaa\",\r\n    \"patente\": \"ABD123\",\r\n    \"anio\": 2021,\r\n    \"kilometraje\": 20000,\r\n    \"cilindrada\": 1700\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/vehiculos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "vehiculos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "52"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Vehiculo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Toyotaa\",\r\n    \"modelo\": \"Corollaa\",\r\n    \"patente\": \"ABD123\",\r\n    \"anio\": 2021,\r\n    \"kilometraje\": 20000,\r\n    \"cilindrada\": 1700\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "52"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:09:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 52,\n    \"marca\": \"Toyotaa\",\n    \"modelo\": \"Corollaa\",\n    \"patente\": \"ABD123\",\n    \"anio\": 2021,\n    \"kilometraje\": 20000,\n    \"cilindrada\": 1700,\n    \"tipoVehiculo\": \"vehiculo\"\n}"
+            },
+            {
+              "name": "Update Automovil",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Toyotaa\",\r\n    \"modelo\": \"Corollaa\",\r\n    \"patente\": \"ABC124\",\r\n    \"anio\": 2021,\r\n    \"kilometraje\": 14000,\r\n    \"cilindrada\": 1200,\r\n    \"tipoVehiculo\": \"automovil\",\r\n    \"tipoAuto\": \"Coupé\",\r\n    \"numPuertas\": 2,\r\n    \"capacidadPasajeros\": 6,\r\n    \"capacidadMaletero\": 700\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "102"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:13:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 102,\n    \"marca\": \"Toyotaa\",\n    \"modelo\": \"Corollaa\",\n    \"patente\": \"ABC124\",\n    \"anio\": 2021,\n    \"kilometraje\": 14000,\n    \"cilindrada\": 1200,\n    \"tipoVehiculo\": \"automovil\",\n    \"tipoAuto\": \"Coupé\",\n    \"numPuertas\": 2,\n    \"capacidadPasajeros\": 6,\n    \"capacidadMaletero\": 700\n}"
+            },
+            {
+              "name": "Update Camion",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"marca\": \"Volvoo\",\r\n    \"modelo\": \"FH161\",\r\n    \"patente\": \"XYZ782\",\r\n    \"anio\": 2012,\r\n    \"kilometraje\": 150000,\r\n    \"cilindrada\": 14000,\r\n    \"tipoVehiculo\": \"camion\",\r\n    \"tipoCamion\": \"tolva\",\r\n    \"capacidadToneladas\": 25.7,\r\n    \"cantidadEjes\": 4\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/vehiculos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "103"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:14:47 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 103,\n    \"marca\": \"Volvoo\",\n    \"modelo\": \"FH161\",\n    \"patente\": \"XYZ782\",\n    \"anio\": 2012,\n    \"kilometraje\": 150000,\n    \"cilindrada\": 14000,\n    \"tipoVehiculo\": \"camion\",\n    \"tipoCamion\": \"tolva\",\n    \"capacidadToneladas\": \"25.7\",\n    \"cantidadEjes\": 4\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Vehiculo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/vehiculos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "vehiculos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "9"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 - No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/vehiculos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "vehiculos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "9"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 01:33:43 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mantenimientos",
+      "item": [
+        {
+          "name": "Mantenimiento por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/mantenimientos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "mantenimientos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/mantenimientos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "mantenimientos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 18:48:09 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"tipoMantenimiento\": \"preventivo\",\n    \"createdAt\": \"2023-01-05T08:30:00\",\n    \"updatedAt\": \"2023-01-05T10:00:00\",\n    \"vehiculo\": {\n        \"id\": 1,\n        \"marca\": \"Toyota\",\n        \"modelo\": \"Corolla\",\n        \"patente\": \"ABC123\",\n        \"anio\": 2020,\n        \"kilometraje\": 45000,\n        \"cilindrada\": 1600,\n        \"tipoVehiculo\": \"vehiculo\"\n    },\n    \"observaciones\": \"Cambio de aceite y filtro\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mantenimiento por Vehiculo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/mantenimientos/vehiculo/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "mantenimientos",
+                "vehiculo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/mantenimientos/vehiculo/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "mantenimientos",
+                    "vehiculo",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 18:49:16 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"tipoMantenimiento\": \"preventivo\",\n        \"createdAt\": \"2023-01-05T08:30:00\",\n        \"updatedAt\": \"2023-01-05T10:00:00\",\n        \"vehiculo\": {\n            \"id\": 1,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 45000,\n            \"cilindrada\": 1600,\n            \"tipoVehiculo\": \"vehiculo\"\n        },\n        \"observaciones\": \"Cambio de aceite y filtro\"\n    },\n    {\n        \"id\": 2,\n        \"tipoMantenimiento\": \"preventivo\",\n        \"createdAt\": \"2023-04-12T14:15:00\",\n        \"updatedAt\": \"2023-04-12T15:30:00\",\n        \"vehiculo\": {\n            \"id\": 1,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 45000,\n            \"cilindrada\": 1600,\n            \"tipoVehiculo\": \"vehiculo\"\n        },\n        \"observaciones\": \"Revisión de frenos\"\n    },\n    {\n        \"id\": 3,\n        \"tipoMantenimiento\": \"correctivo\",\n        \"createdAt\": \"2023-09-20T09:45:00\",\n        \"updatedAt\": \"2023-09-21T11:20:00\",\n        \"vehiculo\": {\n            \"id\": 1,\n            \"marca\": \"Toyota\",\n            \"modelo\": \"Corolla\",\n            \"patente\": \"ABC123\",\n            \"anio\": 2020,\n            \"kilometraje\": 45000,\n            \"cilindrada\": 1600,\n            \"tipoVehiculo\": \"vehiculo\"\n        },\n        \"observaciones\": \"Reparación de suspensión\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Crear Mantenimiento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tipoMantenimiento\": \"correctivo\", // preventivo, correctivo, por_horas, por_kilometraje\r\n    \"observaciones\": \"Cambio de motor\",\r\n    \"vehiculo\": {\"id\": 2}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/mantenimientos/vehiculo/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "mantenimientos",
+                "vehiculo",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"tipoMantenimiento\": \"correctivo\", // preventivo, correctivo, por_horas, por_kilometraje\r\n    \"observaciones\": \"Cambio de motor\",\r\n    \"vehiculo\": {\"id\": 2}\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/mantenimientos/vehiculo/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "mantenimientos",
+                    "vehiculo",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 19:25:48 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 52,\n    \"tipoMantenimiento\": \"correctivo\",\n    \"createdAt\": \"2025-04-02T16:25:48.736907168\",\n    \"updatedAt\": \"2025-04-02T16:25:48.736907168\",\n    \"vehiculo\": {\n        \"id\": 1,\n        \"marca\": \"Toyota\",\n        \"modelo\": \"Corolla\",\n        \"patente\": \"ABC123\",\n        \"anio\": 2020,\n        \"kilometraje\": 45000,\n        \"cilindrada\": 1600,\n        \"tipoVehiculo\": \"vehiculo\"\n    },\n    \"observaciones\": \"Cambio de motor\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Mantenimiento",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tipoMantenimiento\": \"correctivo\",\r\n    \"observaciones\": \"Cambio de aceite y filtroo\",\r\n    \"vehiculo\": {\"id\": 1}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/mantenimientos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "mantenimientos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"tipoMantenimiento\": \"correctivo\",\r\n    \"observaciones\": \"Cambio de aceite y filtroo\",\r\n    \"vehiculo\": {\"id\": 1}\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/mantenimientos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "mantenimientos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 19:27:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"tipoMantenimiento\": \"correctivo\",\n    \"updatedAt\": \"2025-04-02T16:27:49.459850101\",\n    \"vehiculo\": {\n        \"id\": 1,\n        \"tipoVehiculo\": \"vehiculo\"\n    },\n    \"observaciones\": \"Cambio de aceite y filtroo\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Mantenimiento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/mantenimientos/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "mantenimientos",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 NO CONTENT",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/mantenimientos/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "mantenimientos",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Apr 2025 19:28:22 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
