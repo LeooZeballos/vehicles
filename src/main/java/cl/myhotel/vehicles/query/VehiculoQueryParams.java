@@ -7,6 +7,13 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
+/**
+ * Query parameters for searching Vehiculo entities.
+ * This class includes common attributes for all vehicle types.
+ * It includes the vehicle ID, brand, model, license plate, year, mileage, and engine displacement.
+ *
+ * @author Leonel Zeballos
+ */
 @Data
 @SuperBuilder
 @AllArgsConstructor

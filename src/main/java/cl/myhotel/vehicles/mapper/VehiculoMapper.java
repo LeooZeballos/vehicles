@@ -6,9 +6,22 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Mapper class for converting between Vehiculo and VehiculoDTO objects.
+ * This class is responsible for mapping the properties of Vehiculo
+ * to VehiculoDTO and vice versa.
+ *
+ * @author Leonel Zeballos
+ */
 @Component
 public class VehiculoMapper {
 
+    /**
+     * Converts a Vehiculo entity to a VehiculoDTO.
+     *
+     * @param vehiculo The Vehiculo entity to convert.
+     * @return The converted VehiculoDTO.
+     */
     public VehiculoDTO toDTO(Vehiculo vehiculo) {
         if (vehiculo == null) {
             return null;
@@ -41,6 +54,12 @@ public class VehiculoMapper {
         return dto;
     }
 
+    /**
+     * Converts a VehiculoDTO to a Vehiculo entity.
+     *
+     * @param dto The VehiculoDTO to convert.
+     * @return The converted Vehiculo entity.
+     */
     public Vehiculo toEntity(VehiculoDTO dto) {
         if (dto == null) {
             return null;
@@ -78,6 +97,12 @@ public class VehiculoMapper {
         return vehiculo;
     }
 
+    /**
+     * Converts a list of Vehiculo entities to a list of VehiculoDTOs.
+     *
+     * @param vehiculos The list of Vehiculo entities to convert.
+     * @return The converted list of VehiculoDTOs.
+     */
     @SuppressWarnings("unused")
     public List<VehiculoDTO> toDTOList(List<Vehiculo> vehiculos) {
         if (vehiculos == null || vehiculos.isEmpty()) {
@@ -88,6 +113,12 @@ public class VehiculoMapper {
                 .toList();
     }
 
+    /**
+     * Converts a list of VehiculoDTOs to a list of Vehiculo entities.
+     *
+     * @param dtos The list of VehiculoDTOs to convert.
+     * @return The converted list of Vehiculo entities.
+     */
     @SuppressWarnings("unused")
     public List<Vehiculo> toEntityList(List<VehiculoDTO> dtos) {
         if (dtos == null || dtos.isEmpty()) {

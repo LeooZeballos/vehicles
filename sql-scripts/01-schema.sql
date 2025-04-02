@@ -85,3 +85,16 @@ create table if not exists camion
     tipo_camion         tinyint      null,
     check (`tipo_camion` between 0 and 5)
 );
+
+-- Maintenance table
+create table if not exists mantenimiento
+(
+    id                 bigint       not null
+        primary key,
+    created_at         datetime(6)  null,
+    observaciones      varchar(255) null,
+    tipo_mantenimiento tinyint      null,
+    updated_at         datetime(6)  null,
+    vehiculo_id        bigint       not null,
+    check (`tipo_mantenimiento` between 0 and 3)
+);

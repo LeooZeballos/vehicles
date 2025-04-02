@@ -8,6 +8,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+/**
+ * Service for loading user details.
+ * This service implements {@link UserDetailsService} to provide user details for authentication.
+ *
+ * @see UserDetailsService
+ * @see User
+ * @see UserRepository
+ * @author Leonel Zeballos
+ */
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {

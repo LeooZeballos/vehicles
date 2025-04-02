@@ -16,8 +16,26 @@ import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.criteria.Predicate;
 
+/**
+ * Repository for managing vehicle entities.
+ * This repository extends {@link JpaRepository} and {@link JpaSpecificationExecutor}
+ * to provide CRUD operations and dynamic query capabilities.
+ *
+ * @see JpaRepository
+ * @see JpaSpecificationExecutor
+ * @see Vehiculo
+ * @author Leonel Zeballos
+ */
 @Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSpecificationExecutor<Vehiculo> {
+
+    /**
+     * Find all vehicles by the given query parameters and pagination information.
+     *
+     * @param queryParams the query parameters for filtering vehicles
+     * @param pageable    the pagination information
+     * @return a page of vehicles matching the query parameters
+     */
     default Page<Vehiculo> findAllByParams(VehiculoQueryParams queryParams, Pageable pageable) {
         return findAll((root, query, builder) -> {
             List<Predicate> predicates = getVehiculoPredicates(queryParams, root, builder);
@@ -25,6 +43,14 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
         }, pageable);
     }
 
+    /**
+     * Helper method to create predicates for vehicle query parameters.
+     *
+     * @param queryParams the query parameters for filtering vehicles
+     * @param root        the root of the query
+     * @param builder     the criteria builder
+     * @return a list of predicates based on the query parameters
+     */
     static List<Predicate> getVehiculoPredicates(VehiculoQueryParams queryParams, Root<Vehiculo> root, CriteriaBuilder builder) {
         List<Predicate> predicates = new ArrayList<>();
         if (queryParams.getId() != null) {
@@ -57,6 +83,13 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
         return predicates;
     }
 
+    /**
+     * Find all Automovil entities by the given query parameters and pagination information.
+     *
+     * @param queryParams the query parameters for filtering Automovil entities
+     * @param pageable    the pagination information
+     * @return a page of Automovil entities matching the query parameters
+     */
     default Page<Automovil> findAllAutomovilesByParams(AutomovilQueryParams queryParams, Pageable pageable) {
         return findAll((root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
@@ -85,6 +118,13 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
         }, pageable).map(entity -> (Automovil) entity);
     }
 
+    /**
+     * Find all Camion entities by the given query parameters and pagination information.
+     *
+     * @param queryParams the query parameters for filtering Camion entities
+     * @param pageable    the pagination information
+     * @return a page of Camion entities matching the query parameters
+     */
     default Page<Camion> findAllCamionesByParams(CamionQueryParams queryParams, Pageable pageable) {
         return findAll((root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

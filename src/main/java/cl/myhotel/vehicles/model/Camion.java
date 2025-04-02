@@ -4,6 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+/**
+ * Represents a truck entity in the system.
+ * This class extends the Vehiculo class and adds specific attributes related to trucks.
+ * It includes the type of truck, load capacity in tons, and the number of axles.
+ *
+ * @author Leonel Zeballos
+ */
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Data
