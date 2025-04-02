@@ -24,8 +24,11 @@ class AuthControllerTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        authController = new AuthController(authService);
+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(this)) {
+            authController = new AuthController(authService);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize mocks", e);
+        }
     }
 
     @Test

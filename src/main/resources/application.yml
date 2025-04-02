@@ -18,7 +18,9 @@ spring:
         use_sql_comments: true
 
 application:
+  # noinspection SpringBootApplicationYaml
   title: Vehicle Management System
+  # noinspection SpringBootApplicationYaml
   version: 0.0.1-SNAPSHOT
   api:
     version: v1
