@@ -1,7 +1,7 @@
 # Proyecto de Gestión de Vehículos
 
 This project is a vehicle management application developed with Spring Boot, Maven, and MySQL.
-It was created as a challenge for the Backend Developer position at myHotel.
+It was created as a challenge for the Back End Engineer position at myHotel.
 
 ## Table of contents
 
